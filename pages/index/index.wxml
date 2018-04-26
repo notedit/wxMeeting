@@ -2,13 +2,11 @@
 <view class='main'>
   <view style='width:100vw;'>
     <cameraview 
-      user="user"
-      pushUrl="pubshUrl"
+      user="{{user}}"
       event="{{event}}"
       config="{{config}}"
       styles="{{styles}}"
     >
-     
     </cameraview>
   </view>
 

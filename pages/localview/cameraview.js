@@ -4,7 +4,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    user: {type:String, value:''},
+    user: {type:String, value:'', observer: function(newVal, oldVal) { this.userSet(newVal)}},
     // 推流Url
     pushUrl: {type:String, value:''},
     // 推流code
@@ -118,6 +118,15 @@ Component({
         errCode: e.detail.errCode,
         errMsg: e.detail.errMsg || '未获取到摄像头、录音功能权限，请删除小程序后重新打开'
       }, {})
+    },
+    userSet: function(user) {
+      if(user){
+        this.setData({
+          pushUrl: `rtmp://101.201.141.179/live/${user}`
+        })
+      } else {
+
+      }
     }
   }
 })

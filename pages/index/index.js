@@ -1,8 +1,7 @@
+const Room = require('../../lib/room.js')
 
-const io = require('../../lib/weapp.socket.io.js')
 
-const room = require('../../lib/room.js')
-
+let app = getApp()
 
 // pages/index/index.js
 Page({
@@ -11,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    user:'',
     room: '',
     config: {
       aspect: '3:4',
@@ -24,9 +24,10 @@ Page({
     },
     event: 0,
     styles: {           //设置cameraview的大小
-      width: '30vw',
-      height: '30vw'
+      width: '50vw',
+      height: '50vw'
     },
+    client:null
   },
 
   /**
@@ -34,17 +35,30 @@ Page({
    */
   onLoad: function (options) {
 
-    console.log(io)
-    console.log(room)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    let self = this
     wx.setKeepScreenOn({
       keepScreenOn: true
     })
+
+    wx.getUserInfo({
+      success: function(res){
+        var user = res.userInfo.nickName
+        self.setData({
+          user: user
+        })
+
+        self.connect()
+      }
+    })
+
+    
+    
   },
 
   /**
@@ -87,5 +101,38 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  connect: function() {
+
+    let self = this
+    let user = this.data.user
+
+    let client = new Room.Client(user, 'http://localhost:3000/',{
+      onJoined: function(){
+        console.log('onJoined')
+      },
+      onClose: function() {
+        console.log('onClose')
+      },
+      onDisconnect: function() {
+        console.log('onDisconnect')
+      },
+      onReconnect: function(count) {
+        console.log('onReconnect', count)
+      },
+      onError: function(err) {
+        console.error('error', err)
+      },
+      onPusherAdded: function(data) {
+        console.log('onPusherAdded', data)
+      },
+      onPushers: function(data) {
+        console.log('onPushers', data)
+      },
+      onPusherLeaved: function(data) {
+        console.log('onPusherLeaved', data)
+      }
+    })
   }
 })
