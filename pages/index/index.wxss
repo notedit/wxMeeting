@@ -1,0 +1,10 @@
+/* pages/index/index.wxss */
+
+.main {
+  position: relative; 
+  width: 100vw;
+  height: 100vh;
+  background-color: #1F2531;
+  background-repeat:no-repeat;
+  background-size: cover;
+}
