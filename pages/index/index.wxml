@@ -1,7 +1,15 @@
 <!--pages/index/index.wxml-->
 <view class='main'>
-<view>
-
-</view>
+  <view style='width:100vw;'>
+    <cameraview 
+      user="user"
+      pushUrl="pubshUrl"
+      event="{{event}}"
+      config="{{config}}"
+      styles="{{styles}}"
+    >
+     
+    </cameraview>
+  </view>
 
 </view>

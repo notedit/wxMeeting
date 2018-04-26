@@ -20,7 +20,7 @@
       bindstatechange="onPush"
       binderror="onError">
       <cover-image  class='character' src=""></cover-image>
-      <cover-view class='character' style='padding: 0 5px;'>我（{{username}}）</cover-view>
+      <cover-view class='character' style='padding: 0 5px;'>我（{{user}}）</cover-view>
     </live-pusher>  
   </view> 
 </view>

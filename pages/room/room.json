@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "小会议",
+  "usingComponents": {
+    "cameraview": "/pages/localview/cameraview",
+    "remoteview": "/pages/reoteview/remoteview"
+  }
+}

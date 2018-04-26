@@ -1,17 +1,11 @@
-
-const io = require('../../lib/weapp.socket.io.js')
-
-const room = require('../../lib/room.js')
-
-
-// pages/index/index.js
+// pages/room/room.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    room: '',
+    room : '',
     config: {
       aspect: '3:4',
       minBitrate: 200,
@@ -22,36 +16,37 @@ Page({
       camera: true,     //设置前后置摄像头，true表示前置
       operate: ''       //设置操作类型，目前只有一种'stop'，表示停止
     },
-    event: 0,
-    styles: {           //设置cameraview的大小
-      width: '30vw',
-      height: '30vw'
-    },
+    isShow: false,          // 是否显示页面
+    blalala: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    console.log(io)
-    console.log(room)
+  
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    wx.setKeepScreenOn({
-      keepScreenOn: true
-    })
+  
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var self = this
+    console.log('room one in ')
+    
+    wx.setKeepScreenOn({
+      keepScreenOn: true
+    })
+    self.data.isShow = true;
+
+    
   },
 
   /**
@@ -87,5 +82,9 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  onNotify: function(e) {
+
   }
 })
