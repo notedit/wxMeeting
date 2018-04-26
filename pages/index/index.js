@@ -27,7 +27,8 @@ Page({
       width: '50vw',
       height: '50vw'
     },
-    client:null
+    client:null,
+    pushUrl: '',
   },
 
   /**
@@ -50,7 +51,8 @@ Page({
       success: function(res){
         var user = res.userInfo.nickName
         self.setData({
-          user: user
+          user: user,
+          pushUrl: `rtmp://101.201.141.179/live/${user}`
         })
 
         self.connect()
@@ -109,8 +111,15 @@ Page({
     let user = this.data.user
 
     let client = new Room.Client(user, 'http://localhost:3000/',{
+      onConnect: function() {
+
+        client.joinRoom('room')
+
+        
+      },
       onJoined: function(){
         console.log('onJoined')
+
       },
       onClose: function() {
         console.log('onClose')
@@ -134,5 +143,9 @@ Page({
         console.log('onPusherLeaved', data)
       }
     })
+
+    // this.setData({
+    //   client:client
+    // })
   }
 })

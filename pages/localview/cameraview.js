@@ -122,7 +122,7 @@ Component({
     userSet: function(user) {
       if(user){
         this.setData({
-          pushUrl: `rtmp://101.201.141.179/live/${user}`
+         
         })
       } else {
 
