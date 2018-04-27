@@ -58,8 +58,6 @@ Page({
         self.connect()
       }
     })
-
-    
     
   },
 
@@ -110,16 +108,12 @@ Page({
     let self = this
     let user = this.data.user
 
-    let client = new Room.Client(user, 'http://localhost:3000/',{
+    let client = new Room.Client(user, 'http://39.106.248.166:3000/',{
       onConnect: function() {
-
         client.joinRoom('room')
-
-        
       },
       onJoined: function(){
         console.log('onJoined')
-
       },
       onClose: function() {
         console.log('onClose')
