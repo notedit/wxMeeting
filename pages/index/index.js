@@ -17,7 +17,7 @@ Page({
       minBitrate: 200,
       maxBitrate: 300,
       beauty: 8,
-      muted: false,     //设置推流是否静音
+      muted: true,     //设置推流是否静音
       debug: false,     //是否显示log
       camera: true,     //设置前后置摄像头，true表示前置
       operate: ''       //设置操作类型，目前只有一种'stop'，表示停止

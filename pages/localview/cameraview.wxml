@@ -3,7 +3,6 @@
 <!--pages/localview/localview.wxml-->
 <view class='pusher-container' style="width: {{styles.width}};height: {{styles.height}}">
   <view class="pusher-box"> 
-    <view class='poster'></view>   
     <live-pusher
       id="local"
       wx:if="{{user}}"
