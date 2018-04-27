@@ -1,7 +1,7 @@
 const Room = require('../../lib/room.js')
+const utils = require('../../lib/utils.js')
 
-
-let app = getApp()
+const app = getApp()
 
 // pages/index/index.js
 Page({
@@ -51,6 +51,7 @@ Page({
     wx.getUserInfo({
       success: function(res){
         var user = res.userInfo.nickName
+        user = utils.randomstr()
         self.setData({
           user: user,
           pushUrl: `rtmp://101.201.141.179/live/${user}`
@@ -97,6 +98,8 @@ Page({
   
   },
 
+  
+
   /**
    * 用户点击右上角分享
    */
@@ -109,7 +112,7 @@ Page({
     let self = this
     let user = this.data.user
 
-    let client = new Room.Client(user, 'http://39.106.248.166:3000/',{
+    let client = new Room.Client(user, 'http://10.1.3.103:3000/',{
       onConnect: function() {
         client.joinRoom('room')
       },
@@ -152,7 +155,7 @@ Page({
         // {user:user pushUrl:pushUrl}
 
         let players = self.data.players
-        
+
         players.filter(player => player.user !== data.user)
         
         self.setData({
@@ -162,8 +165,13 @@ Page({
       }
     })
 
+    app.roomClient = client
     // this.setData({
     //   client:client
     // })
+  },
+
+  onPusherNotify: function(e){
+    console.log('onPusherNotify',e)
   }
 })

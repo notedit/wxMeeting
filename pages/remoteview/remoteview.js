@@ -44,6 +44,9 @@ Component({
           console.log('视频拉流情况:', e)
         }
       }
+    },
+    setConfig: function(newVal, oldVal) {
+
     }
   },
 

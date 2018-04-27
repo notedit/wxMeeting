@@ -1,4 +1,7 @@
 // pages/cameraview/cameraview.js
+
+const app = getApp()
+
 Component({
   /**
    * 组件的属性列表
@@ -67,6 +70,11 @@ Component({
       switch (code) {
         case 1002: {
           // 推流成功
+          app.roomClient.addPusher({
+            user:self.data.user,
+            pushUrl:self.data.pushUrl
+          })
+          console.log('addPusher')
           break
         }
         case -1301: {
