@@ -1,6 +1,6 @@
 <!--pages/index/index.wxml-->
 <view class='main'>
-  
+
     <cameraview 
       user="{{user}}"
       event="{{event}}"
