@@ -1,6 +1,6 @@
 <!--pages/index/index.wxml-->
 <view class='main'>
-  <view style='width:100vw;'>
+  
     <cameraview 
       user="{{user}}"
       event="{{event}}"
@@ -9,6 +9,21 @@
       pushUrl="{{pushUrl}}"
     >
     </cameraview>
-  </view>
+
+    <view class='player-box' wx:for="{{ players }}" wx:key="user">
+      <view class='poster'>
+      <cover-image></cover-image>
+      </view>
+      <remoteview
+        user="{{item.user}}"
+        playUrl="{{item.pushUrl}}"
+        config="{{config}}"
+        styles="{{styles}}"
+      >
+        <cover-image>
+        </cover-image>
+
+      </remoteview>
+    </view>
 
 </view>

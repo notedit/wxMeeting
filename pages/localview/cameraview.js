@@ -4,7 +4,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    user: {type:String, value:'', observer: function(newVal, oldVal) { this.userSet(newVal)}},
+    user: {type:String, value:''},
     // 推流Url
     pushUrl: {type:String, value:''},
     // 推流code
@@ -57,9 +57,6 @@ Component({
     // 推流
     onPush: function(e) {
       var self = this
-      if (!self.data.pusherContext) {
-        self.data.pusherContext = wx.createLivePusherContext('local')
-      }
       var code
       if(e.detail){
         code = e.detail.code
@@ -118,15 +115,18 @@ Component({
         errCode: e.detail.errCode,
         errMsg: e.detail.errMsg || '未获取到摄像头、录音功能权限，请删除小程序后重新打开'
       }, {})
+    
+    
     },
-    userSet: function(user) {
-      if(user){
-        this.setData({
-         
-        })
-      } else {
 
-      }
+    onStates: function(e) {
+      console.log('onStates:', e.detail)
+    }
+  },
+
+  ready: function(){
+    if (!this.data.pusherContext) {
+      this.data.pusherContext = wx.createLivePusherContext('local')
     }
   }
 })

@@ -6,6 +6,7 @@
     <view class='poster'></view>   
     <live-pusher
       id="local"
+      wx:if="{{user}}"
       autopush
       mode="RTC"
       url="{{pushUrl}}"
@@ -18,6 +19,7 @@
       waiting-image=""
       background-mute="{{true}}"
       bindstatechange="onPush"
+      bindnetstatus="onStates"
       binderror="onError">
       <cover-image  class='character' src=""></cover-image>
       <cover-view class='character' style='padding: 0 5px;'>我（{{user}}）</cover-view>

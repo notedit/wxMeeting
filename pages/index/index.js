@@ -29,6 +29,7 @@ Page({
     },
     client:null,
     pushUrl: '',
+    players: []
   },
 
   /**
@@ -129,12 +130,35 @@ Page({
       },
       onPusherAdded: function(data) {
         console.log('onPusherAdded', data)
+
+        let players = self.data.players 
+
+        players.push(data)
+
+        self.setData({
+          players: players
+        })
       },
       onPushers: function(data) {
         console.log('onPushers', data)
+
+        self.setData({
+          players: data
+        })
+
       },
       onPusherLeaved: function(data) {
         console.log('onPusherLeaved', data)
+        // {user:user pushUrl:pushUrl}
+
+        let players = self.data.players
+        
+        players.filter(player => player.user !== data.user)
+        
+        self.setData({
+          players: players
+        })
+
       }
     })
 
