@@ -128,7 +128,7 @@ Component({
     },
 
     onStates: function(e) {
-      console.log('onStates:', e.detail)
+      //console.log('onStates:', e.detail)
     }
   },
 

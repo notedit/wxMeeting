@@ -11,6 +11,7 @@
     >
     </cameraview>
 
+
     <view class='player-box' wx:for="{{ players }}" wx:key="user">
       <view class='poster'>
       <cover-image></cover-image>

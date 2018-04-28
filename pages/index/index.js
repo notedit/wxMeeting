@@ -37,6 +37,7 @@ Page({
    */
   onLoad: function (options) {
 
+    console.log('onLoad', options)
   },
 
   /**
@@ -48,40 +49,41 @@ Page({
       keepScreenOn: true
     })
 
-    wx.getUserInfo({
-      success: function(res){
-        var user = res.userInfo.nickName
-        user = utils.randomstr()
-        self.setData({
-          user: user,
-          pushUrl: `rtmp://101.201.141.179/live/${user}`
-        })
 
-        self.connect()
-      }
+    let user = utils.randomstr()
+
+    self.setData({
+      user: user,
+      pushUrl: `rtmp://101.201.141.179/live/${user}`
     })
-    
+
+    self.connect()
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
+    console.log('onShow')
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    console.log('onHide')
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    console.log('onUnload')
+    if (app.roomClient){
+      app.roomClient.close()
+    }
   },
 
   /**
@@ -135,7 +137,7 @@ Page({
         console.log('onPusherAdded', data)
 
         let players = self.data.players 
-
+        
         players.push(data)
 
         self.setData({
@@ -156,10 +158,14 @@ Page({
 
         let players = self.data.players
 
-        players.filter(player => player.user !== data.user)
+        console.log('before removed', players)
+
+        let leftPlayers = players.filter(player => player.user !== data.user)
+
+        console.log('after removeed', leftPlayers)
         
         self.setData({
-          players: players
+          players: leftPlayers
         })
 
       }
