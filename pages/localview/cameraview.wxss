@@ -13,6 +13,7 @@
 	text-align: center;
   margin-bottom: 2vw;
   vertical-align: top;
+  border-radius:10px;
 }
 .poster {
 	position: absolute;  

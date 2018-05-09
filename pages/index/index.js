@@ -114,7 +114,7 @@ Page({
     let self = this
     let user = this.data.user
 
-    let client = new Room.Client(user, 'http://10.1.3.103:3000/',{
+    let client = new Room.Client(user, 'http://39.106.248.166:3000/',{
       onConnect: function() {
         client.joinRoom('room')
       },
